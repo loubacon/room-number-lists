@@ -1,0 +1,41 @@
+{
+  function makeInteger(o) {
+    return parseInt(o.join(""), 10);
+  }
+  function range(start, end) { // inclusive
+    var length = end + 1 - start;
+    return Array.apply(null, Array(length)).map(function (_, i) {return i + start;});
+  }
+  function repeated(times, val) {
+    return Array.apply(null, Array(times)).map(function () {return val;});
+  }
+  function flatten(list) {
+    return list.reduce(function (acc, val) {
+      return acc.concat(val.constructor === Array ? flatten(val) : val);
+    }, []);
+  }
+}
+start =
+    _xs:((repeater / range / number / string) separator*)*
+        {
+          var f = function(x){return x[0]};
+          return flatten(_xs.map(f)).map(String);
+        }
+separator =
+    (',' ' '*) / [\r\t\n]
+        {return undefined;}
+number =
+    _digits:[0-9]+
+        {return parseInt(_digits.join(''));}
+string =
+    "/" _chars:[0-9a-zA-Z~!@#$%^&()_\-+=` .]+
+        {return _chars.join('');}
+range = 
+    _first:number '-' _second:number
+        {
+          if (_first > _second) error(text() + ' is an invalid range (start number must be less than end number)');
+          return range(_first, _second);
+        }
+repeater = 
+    _x:(range / number / string) "*" _n:(number)
+        {return repeated(_n, _x);}

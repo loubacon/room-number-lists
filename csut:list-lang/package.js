@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'csut:validate',
+  name: 'csut:list-lang',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -12,12 +12,12 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.3.1');
-  api.addFiles('csut:validate.js');
-  api.export('validate');
+  api.addFiles('csut:list-lang.js');
+  api.export('listLang');
 });
 
 Package.onTest(function(api) {
   api.use('tinytest');
-  api.use('csut:validate');
-  api.addFiles('csut:validate-tests.js');
+  api.use('csut:list-lang');
+  api.addFiles('csut:list-lang-tests.js');
 });
