@@ -8,3 +8,9 @@ meteor-platform
 autopublish
 insecure
 csut:validate
+accounts-base
+accounts-password
+csut:room-number-list-class
+mrt:moment
+wizonesolutions:underscore-string
+csut:ramdajs
