@@ -12,7 +12,9 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.3.1');
-  api.addFiles('csut:room-number-list-class.js');
+  api.use(['coffeescript', 'csut:validate']);
+  api.addFiles('csut:room-number-list-class.coffee');
+  api.export('DataListClass');
 });
 
 Package.onTest(function(api) {
