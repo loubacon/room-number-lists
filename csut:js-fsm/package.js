@@ -13,6 +13,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.0.3.1');
   api.addFiles('csut:js-fsm.js');
+  api.export('StateMachine');
 });
 
 Package.onTest(function(api) {
