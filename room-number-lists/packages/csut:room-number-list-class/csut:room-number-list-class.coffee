@@ -13,14 +13,6 @@ genDataListId = (p) ->
 removeListFromList = (p) ->
   # p = {superList: [], subList: []}
   # iterate through each value in subList, and remove that value once from superList
-
-  # console.log p
-  # # can't use sets for this, as duplicates must be allowed
-  ###
-  RESUME HERE
-  make a "remove from array" function that take an index and returns an array with the item at that index removed
-  then 
-  ###
   removeFromInc = (x) ->
     i = R.findIndex R.eq(x), p.include # i will be -1 if x is not found in inc
     if i >= 0 then p.include.splice i, 1 # if we found x in inc, remove it!
