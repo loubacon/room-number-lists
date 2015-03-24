@@ -10,7 +10,7 @@ Tinytest.add('fsm_1', function (test) {
       { name: 'calm',  from: 'red',    to: 'yellow' },
       { name: 'clear', from: 'yellow', to: 'green'  }
   ]});
-  test.equal(fsm.current, 'green');
+  test.equal(fsm.current.get(), 'green');
 });
 
 Tinytest.add('fsm_2', function (test) {
@@ -23,7 +23,7 @@ Tinytest.add('fsm_2', function (test) {
       { name: 'clear', from: 'yellow', to: 'green'  }
   ]});
   fsm.warn();
-  test.equal(fsm.current, 'yellow');
+  test.equal(fsm.current.get(), 'yellow');
 });
 
 Tinytest.add('fsm_3', function (test) {
@@ -37,7 +37,7 @@ Tinytest.add('fsm_3', function (test) {
   ]});
   fsm.warn();
   fsm.panic();
-  test.equal(fsm.current, 'red');
+  test.equal(fsm.current.get(), 'red');
 });
 Tinytest.add('fsm_4', function (test) {
   var fsm = StateMachine.create({
@@ -51,7 +51,7 @@ Tinytest.add('fsm_4', function (test) {
   fsm.warn();
   fsm.panic();
   fsm.calm();
-  test.equal(fsm.current, 'yellow');
+  test.equal(fsm.current.get(), 'yellow');
 });
 
 Tinytest.add('fsm_5', function (test) {
@@ -67,7 +67,7 @@ Tinytest.add('fsm_5', function (test) {
   fsm.panic();
   fsm.calm();
   fsm.clear();
-  test.equal(fsm.current, 'green');
+  test.equal(fsm.current.get(), 'green');
 });
 
 Tinytest.add('fsm_6', function (test) {
@@ -81,5 +81,5 @@ Tinytest.add('fsm_6', function (test) {
   ]});
   fsm.warn();
   fsm.clear();
-  test.equal(fsm.current, 'green');
+  test.equal(fsm.current.get(), 'green');
 });

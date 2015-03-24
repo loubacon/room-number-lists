@@ -14,3 +14,6 @@ csut:room-number-list-class
 mrt:moment
 wizonesolutions:underscore-string
 csut:ramdajs
+coffeescript
+reactive-var
+csut:js-fsm

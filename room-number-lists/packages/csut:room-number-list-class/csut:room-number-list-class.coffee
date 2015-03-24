@@ -66,10 +66,6 @@ class RoomNumberListClass
     errors = validate p, DataListConstraints
     
     if errors?
-      console.error 'Encountered bad parameters to the RoomNumberListClass constructor while trying to construct from:'
-      console.error p
-      console.log 'errors are:'
-      console.error _.values(errors).join(' | ')
       @errors = errors
     else      
       # copy relevant fields to instance

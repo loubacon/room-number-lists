@@ -74,11 +74,12 @@ StateMachine = {
         fsm[name] = callbacks[name]
     }
 
-    fsm.current     = 'none';
-    fsm.is          = function(state) { return (state instanceof Array) ? (state.indexOf(this.current) >= 0) : (this.current === state); };
-    fsm.can         = function(event) { return !this.transition && (map[event].hasOwnProperty(this.current) || map[event].hasOwnProperty(StateMachine.WILDCARD)); }
+    // fsm.current     = 'none';
+    fsm.current     = new ReactiveVar('none');
+    fsm.is          = function(state) { return (state instanceof Array) ? (state.indexOf(this.current.get()) >= 0) : (this.current.get() === state); };
+    fsm.can         = function(event) { return !this.transition && (map[event].hasOwnProperty(this.current.get()) || map[event].hasOwnProperty(StateMachine.WILDCARD)); }
     fsm.cannot      = function(event) { return !this.can(event); };
-    fsm.transitions = function()      { return transitions[this.current]; };
+    fsm.transitions = function()      { return transitions[this.current.get()]; };
     fsm.isFinished  = function()      { return this.is(terminal); };
     fsm.error       = cfg.error || function(name, from, to, args, error, msg, e) { throw e || msg; }; // default behavior when something unexpected happens is to throw an exception, but caller can override this behavior if desired (see github issue #3 and #17)
 
@@ -143,7 +144,7 @@ StateMachine = {
   buildEvent: function(name, map) {
     return function() {
 
-      var from  = this.current;
+      var from  = this.current.get();
       var to    = map[from] || map[StateMachine.WILDCARD] || from;
       var args  = Array.prototype.slice.call(arguments); // turn arguments into pure array
 
@@ -151,7 +152,7 @@ StateMachine = {
         return this.error(name, from, to, args, StateMachine.Error.PENDING_TRANSITION, "event " + name + " inappropriate because previous transition did not complete");
 
       if (this.cannot(name))
-        return this.error(name, from, to, args, StateMachine.Error.INVALID_TRANSITION, "event " + name + " inappropriate in current state " + this.current);
+        return this.error(name, from, to, args, StateMachine.Error.INVALID_TRANSITION, "event " + name + " inappropriate in current state " + this.current.get());
 
       if (false === StateMachine.beforeEvent(this, name, from, to, args))
         return StateMachine.Result.CANCELLED;
@@ -165,7 +166,7 @@ StateMachine = {
       var fsm = this;
       this.transition = function() {
         fsm.transition = null; // this method should only ever be called once
-        fsm.current = to;
+        fsm.current.set(to);
         StateMachine.enterState( fsm, name, from, to, args);
         StateMachine.changeState(fsm, name, from, to, args);
         StateMachine.afterEvent( fsm, name, from, to, args);
@@ -195,32 +196,32 @@ StateMachine = {
 }; // StateMachine
 
 //===========================================================================
-
-//======
-// NODE
-//======
-if (typeof exports !== 'undefined') {
-  if (typeof module !== 'undefined' && module.exports) {
-    exports = module.exports = StateMachine;
-  }
-  exports.StateMachine = StateMachine;
-}
-//============
-// AMD/REQUIRE
-//============
-else if (typeof define === 'function' && define.amd) {
-  define(function(require) { return StateMachine; });
-}
-//========
-// BROWSER
-//========
-else if (typeof window !== 'undefined') {
-  window.StateMachine = StateMachine;
-}
-//===========
-// WEB WORKER
-//===========
-else if (typeof self !== 'undefined') {
-  self.StateMachine = StateMachine;
-}
+// this.StateMachine = StateMachine;
+// //======
+// // NODE
+// //======
+// if (typeof exports !== 'undefined') {
+//   if (typeof module !== 'undefined' && module.exports) {
+//     exports = module.exports = StateMachine;
+//   }
+//   exports.StateMachine = StateMachine;
+// }
+// //============
+// // AMD/REQUIRE
+// //============
+// else if (typeof define === 'function' && define.amd) {
+//   define(function(require) { return StateMachine; });
+// }
+// //========
+// // BROWSER
+// //========
+// else if (typeof window !== 'undefined') {
+//   window.StateMachine = StateMachine;
+// }
+// //===========
+// // WEB WORKER
+// //===========
+// else if (typeof self !== 'undefined') {
+//   self.StateMachine = StateMachine;
+// }
 
