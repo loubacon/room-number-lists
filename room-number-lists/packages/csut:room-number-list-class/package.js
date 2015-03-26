@@ -14,7 +14,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.0.3.1');
   api.use(['coffeescript', 'csut:validate', 'accounts-base', 'accounts-password', 'csut:list-lang', 'underscore', 'wizonesolutions:underscore-string', 'mrt:moment', 'csut:ramdajs']);
   api.addFiles('csut:room-number-list-class.coffee');
-  api.export('RoomNumberListClass');
+  api.export(['RoomNumberListClass', 'RoomNumberListClassMethods']);
 });
 
 Package.onTest(function(api) {

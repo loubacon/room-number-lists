@@ -1,0 +1,42 @@
+<template name="job">
+  {{!-- back to search, list runs, show menu --}}
+  <div>
+    {{#linkTo route="search"}}
+      <div>
+        Back to Search
+      </div>
+    {{/linkTo}}
+    {{#each lists}}
+      <div style="color:{{isState 'listingOptions' 'black' 'lightgrey'}};">
+        {{this.run}}-{{this.name}}: {{this.list.length}}, by {{creatorFormat this.creatorEmail}} on {{dateFormat this.creationDate}}
+        <div id="run-menu_{{this.run}}-{{this.name}}">
+          <a href="#">
+            edit
+          </a>
+          <a href="delete" data-job={{this.job}} data-run={{this.run}} data-name={{this.name}}>
+            delete
+          </a>
+          <a href="#">
+            clone
+          </a>
+        </div>
+      </div>
+    {{/each}}
+    <div>
+      View / Print
+    </div>
+    <div>
+      Download
+    </div>
+  </div>
+  {{!-- confirmDeletion modal --}}
+  {{#csut_modal open=isConfirmDeletion}}
+    <form style="background-color:white; padding:2rem;">
+      <legend>
+        Are you sure that you wish to delete {{maybeDeleteList._id}} ?
+      </legend>
+      <button>Delete</button>
+      <a href="cancelDeletion">Cancel</a>
+    </form>
+  {{/csut_modal}}
+</template>

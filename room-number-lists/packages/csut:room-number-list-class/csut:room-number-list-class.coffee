@@ -5,7 +5,7 @@ validate.validators.parsesAsValidListLang = (value, options, key, attr) ->
     return error.message
   return # if no error is thrown by the parser, make sure to return nothing, else the call to parse above will return the parser's output!
 
-sortDataList = (xs) ->  _.sortBy xs, _s.naturalCmp
+sortDataList = (xs) ->  R.sort _s.naturalCmp, xs 
 
 genDataListId = (p) ->
   [p.job, p.run, p.name].join('-')
@@ -78,7 +78,12 @@ class RoomNumberListClass
       @creationDate = p.creationDate
       @creatorEmail = p.creatorEmail
       @_id = genDataListId p
-    
-@RoomNumberListClass = RoomNumberListClass # export to package scope    
+
+RoomNumberListClassMethods = {
+  genDataListId: genDataListId
+} 
+@RoomNumberListClass = RoomNumberListClass # export to package scope
+@RoomNumberListClassMethods = RoomNumberListClassMethods
+
     
     

@@ -1,0 +1,10 @@
+<template name="csut_modal">
+  {{!-- when calling this template, include a 'open' boolean parameter to open and close modal --}}
+  <div class="csut-modal_animate-transitions
+              csut-modal_overflow-hidden 
+              csut-modal_modal" 
+       style="opacity:{{ifThenOr open '1' '0'}};
+              max-height:{{ifThenOr open '100rem' '0'}};">
+    {{> UI.contentBlock}}
+  </div>
+</template>
