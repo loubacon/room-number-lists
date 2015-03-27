@@ -1,5 +1,6 @@
 console.log 'model.coffee being called'
 Template.csut_modal.helpers {
+  'currentWindowHeight': -> "#{$( window ).height()}px"
   'ifThenOr': (ifCond, thenVal, orVal) ->
     isTrue = ifCond is true
     switch

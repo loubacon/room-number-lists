@@ -12,8 +12,8 @@ Template.job.created = ->
         unless obj?.run? and obj?.name? then return false
       onbeginDeletion: (event, from, to, obj) =>
         @maybeDeleteListId.set RoomNumberListClassMethods.genDataListId(obj)
-        console.log "@maybeDeleteListId.get()"
-        console.log @maybeDeleteListId.get()
+      onapproveDeletion: (event, from, to, idToDelete) =>
+        Meteor.call 'DataLists.remove', idToDelete
     }
   }
   @maybeDeleteListId = new ReactiveVar undefined
@@ -36,6 +36,9 @@ Template.job.helpers {
 }
 
 Template.job.events {
+  'submit #confirmDeletionModal': (e, t) ->
+    e.preventDefault()
+    t.fsm.approveDeletion t.maybeDeleteListId.get()
   'click [href="delete"]': (e, t) ->
     e.preventDefault()
     t.fsm.beginDeletion e.currentTarget.dataset

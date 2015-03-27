@@ -30,8 +30,8 @@
     </div>
   </div>
   {{!-- confirmDeletion modal --}}
-  {{#csut_modal open=isConfirmDeletion}}
-    <form style="background-color:white; padding:2rem;">
+  {{#csut_modal open=isConfirmDeletion screen='rgba(150, 0, 0, 0.8)'}}
+    <form id='confirmDeletionModal' style="background-color:white; padding:2rem;">
       <legend>
         Are you sure that you wish to delete {{maybeDeleteList._id}} ?
       </legend>

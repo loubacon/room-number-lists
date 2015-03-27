@@ -1,0 +1,23 @@
+Meteor.call('DataLists.insert', {job: "00000",
+run: "A",
+name: "#s",
+creationDate: "Wed Mar 25 2015 04:25:08 GMT-0700 (PDT)",
+creatorEmail: "chris@desi.com",
+include: "101-105, /yap, /yup",
+remove: "0-10"})
+
+Meteor.call('DataLists.insert', {job: "00000",
+run: "B",
+name: "#s",
+creationDate: "Wed Mar 25 2015 04:25:08 GMT-0700 (PDT)",
+creatorEmail: "chris@desi.com",
+include: "50*10",
+remove: "0-50*8"})
+
+Meteor.call('DataLists.insert', {job: "00000",
+run: "C",
+name: "#s",
+creationDate: "Wed Mar 25 2015 04:25:08 GMT-0700 (PDT)",
+creatorEmail: "chris@desi.com",
+include: "/Spooky, /Is, /Cool*4",
+remove: "/Is*3"})
