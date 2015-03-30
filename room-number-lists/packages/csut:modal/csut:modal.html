@@ -1,8 +1,14 @@
 <template name="csut_modal">
-  {{!-- when calling this template, include a 'open' boolean parameter to open and close modal, also include a 'screen' rgba color (this will be used to covers the other items on screen) --}}
+  {{!-- 
+  when calling this template, include a 'open' boolean parameter to open and close modal, also include a 'screen' rgba color (this will be used to covers the other items on screen) 
+
+  also, when using this template, you can access its events through bubble-up to the including templates events with '<eventType> .csut-modal_modal-bg' (this will allow you to handle clicks on the 'screen' part of the modal, which often indicate a 'close modal' desire on the part of the user)
+
+  also, csut_modal.eventWasOutsideOf offers users a way to test if an event was outside of the body that they provided to csut:modal.  this is important for making sure that someone clicked on the screen, but that this click was not actually previously captured by something in the provided content, which would result in (likely) unwanted double processing.
+  --}}
   <div class="csut-modal_animate-transitions
               csut-modal_overflow-hidden 
-              csut-modal_modal" 
+              csut-modal_modal-bg" 
        style="opacity:{{ifThenOr open '1' '0'}};
               max-height:{{ifThenOr open currentWindowHeight '0'}};
               background:{{screen}};">

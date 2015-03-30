@@ -19,3 +19,4 @@ csut:js-fsm
 iron:router
 csut:prelude
 csut:modal
+csut:blueprint

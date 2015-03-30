@@ -1,0 +1,64 @@
+- List App Features
+- Define Data Structures used in app
+- Define Collections used in app
+- Define Server methods used in app
+- Define URLs used in app
+- Define GUI components used in app
+- Define State Machines used in app
+- Create Mock Data
+
+- List App Features
+  - Search for room number lists associated with a job
+  - View room number lists
+  - Print room number lists
+  - Download files for variable data printing in Corel
+  - Delete room number lists
+  - Edit room number lists
+  - Create a new room number list based on an old room number list
+  - Provide a convenient shorthand for entering room number lists
+
+- Define Data Structures used in app
+  - room-number-list
+    _id: "#{job}-#{run}-#{name}"
+    job: (5 digit integer, stored as string)
+    run: (single or double capital letter)
+    name: (non-empty string)
+    include: (non-empty string of valid listLang)
+    remove: (empty string or valid listLang)
+    list: (Array of strings that are the values represented by include, without the values listed in remove)
+    creationDate: (Date object)
+    creatorEmail: email address of person who created list
+  - user
+    email address(es)
+    password
+
+- Define Collections used in app
+  - Users
+  - RoomNumberLists
+
+- Define Server methods used in app
+  - "RoomNumberLists.insert"
+  - "RoomNumberLists.update"
+  - "RoomNumberLists.delete"
+
+- Define URLs used in app
+  - "/blueprint"
+  - "/"
+  - "/:job"
+  - "/create/:job/:run/:name"
+  - "/viewPrint/:job/:dashDelimitedRunList?"
+  - "/download/:job/:dashDelimitedRunList?"
+
+- Define GUI components used in app
+  - "/"
+    <form>
+      <legend>
+        <div>Enter Job #:</div>
+      </legend>
+      <label>
+        <input type="text" name="job">
+        <div>{{jobFormHints}}</div>
+      </label>
+    </form>
+
+  

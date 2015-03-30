@@ -1,0 +1,29 @@
+<template name="csut_blueprint">
+  {{#if csut_isnt currentState 'displayBlueprint'}}
+    {{> csut_blueprint_requestPassword currentState=currentState}}
+      <div  class="csut_blueprint_invalid_container"
+            style="max-height:  {{csut_isSwitch currentState 'tryAgain' '5rem' '0'}};">
+        Password invalid, please try again.
+      </div>
+      <div 
+        class="csut_blueprint_verifying_container"
+        style="max-height:  {{csut_isSwitch currentState 'verifying' '5rem' '0'}};">
+        Verifying Password
+      </div>
+  {{/if}}
+
+  {{#if csut_is currentState 'displayBlueprint'}}
+    {{> UI.contentBlock}}
+  {{/if}}
+  
+</template>
+
+<template name="csut_blueprint_requestPassword">
+  <form class="csut_blueprint_requestPassword_form">
+    <legend>
+      Please enter the password to view this blueprint:
+    </legend>
+    <input type="password" name="password" {{csut_isntSwitch currentState 'verifying' '' 'readonly'}}>
+    <button>Submit</button>
+  </form>
+</template>

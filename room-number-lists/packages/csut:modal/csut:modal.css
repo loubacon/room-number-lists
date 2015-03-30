@@ -5,7 +5,7 @@
   overflow: hidden;
 }
 
-.csut-modal_modal {
+.csut-modal_modal-bg {
   z-index: 99;
   position: fixed;
   top: 0;

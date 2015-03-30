@@ -14,4 +14,12 @@ csut.objectifyForm = (form) ->
   
   return formObj
 
+if Meteor.isClient
+  Template.registerHelper 'csut_is', (x, y) -> return x is y
+  Template.registerHelper 'csut_isnt', (x, y) -> return x isnt y
+  Template.registerHelper 'csut_isSwitch', (x, y, a, b) -> 
+    if x is y then return a else return b
+  Template.registerHelper 'csut_isntSwitch', (x, y, a, b) -> 
+    if x isnt y then return a else return b
+
 @csut = csut

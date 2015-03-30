@@ -1,0 +1,11 @@
+<template name="proximal_comments">
+  for each item whose parentId is the passed-in template argument "id"
+  sort them chronologically by creationDate
+  step through each element and list it
+    for each element
+      find all comments whose parentId is this elements _id
+      list those elements
+  {{#each topLevelComments}}
+    <div>{{this.msg}}</div>
+  {{/each}}
+</template>

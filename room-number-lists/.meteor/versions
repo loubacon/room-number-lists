@@ -9,6 +9,7 @@ boilerplate-generator@1.0.3
 callback-hook@1.0.3
 check@1.0.5
 coffeescript@1.0.6
+csut:blueprint@0.0.1
 csut:js-fsm@0.0.1
 csut:list-lang@0.0.1
 csut:modal@0.0.1

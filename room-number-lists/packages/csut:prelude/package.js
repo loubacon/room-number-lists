@@ -12,7 +12,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.4.2');
-  api.use(['coffeescript', 'csut:ramdajs']);
+  api.use(['coffeescript', 'csut:ramdajs', 'templating']);
   api.addFiles('csut:prelude.coffee');
 });
 

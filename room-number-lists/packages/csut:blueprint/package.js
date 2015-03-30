@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'csut:modal',
+  name: 'csut:blueprint',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -12,13 +12,12 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.4.2');
-  api.addFiles(['csut:modal.html', 'csut:modal.css', 'csut:modal.coffee'], 'client');
-  api.use(['templating', 'coffeescript'], 'client');
-  api.export('csut_modal');
+  api.addFiles(['csut:blueprint.html', 'csut:blueprint.css', 'csut:blueprint.coffee']);
+  api.use(['coffeescript', 'csut:prelude', 'templating', 'csut:js-fsm']);
 });
 
 Package.onTest(function(api) {
   api.use('tinytest');
-  api.use('csut:modal');
-  api.addFiles('csut:modal-tests.js');
+  api.use('csut:blueprint');
+  api.addFiles('csut:blueprint-tests.js');
 });
