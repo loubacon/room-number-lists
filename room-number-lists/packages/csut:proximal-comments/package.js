@@ -12,8 +12,17 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.4.2');
-  api.use(['coffeescript', 'minimongo', 'mongo-livedata', 'templating']);
+  api.use('ddp', ['client', 'server']);
+  api.use('coffeescript', ['client', 'server']);
+  api.use('templating', ['client']);
+  api.use('mongo', ['client', 'server']);
+  api.use('mongo-livedata', ['client', 'server']);
+  // api.use('mongo-platform', ['client', 'server']);
+  api.use('tracker', ['client', 'server']);
+  api.use('deps', ['client', 'server']);
+  api.use('ddp', ['client', 'server']);
   api.addFiles(['csut:proximal-comments.html', 'csut:proximal-comments.coffee']);
+  api.export('csut_proximalComments_comments');
 });
 
 Package.onTest(function(api) {

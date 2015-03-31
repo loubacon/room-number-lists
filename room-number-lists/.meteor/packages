@@ -20,3 +20,4 @@ iron:router
 csut:prelude
 csut:modal
 csut:blueprint
+csut:proximal-comments

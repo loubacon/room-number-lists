@@ -14,6 +14,7 @@ csut:js-fsm@0.0.1
 csut:list-lang@0.0.1
 csut:modal@0.0.1
 csut:prelude@0.0.1
+csut:proximal-comments@0.0.1
 csut:ramdajs@0.0.1
 csut:room-number-list-class@0.0.7
 csut:validate@0.0.1
@@ -48,6 +49,7 @@ minifiers@1.1.4
 minimongo@1.0.7
 mobile-status-bar@1.0.3
 mongo@1.1.0
+mongo-livedata@1.0.8
 mrt:moment@2.8.1
 npm-bcrypt@0.7.8_1
 observe-sequence@1.0.5
