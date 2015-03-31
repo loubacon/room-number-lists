@@ -1,0 +1,3 @@
+csut_proximalComments_comments = new Mongo.Collection 'csut_proximalComments_comments'
+
+@csut_proximalComments_comments = csut_proximalComments_comments
