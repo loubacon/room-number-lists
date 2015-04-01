@@ -29,6 +29,7 @@ Package.onUse(function(api) {
   api.addFiles('client/proximal_comments/proximal_comments.html', ['client']);
   api.addFiles('client/proximal_comments/proximal_comments.coffee', ['client']);
   api.addFiles('server/dummyData.coffee', ['server']);
+  api.addFiles('server/methods.coffee', ['server']);
   api.addFiles('server/publish.coffee', ['server']);
 
   api.export('csut_proximalComments_comments');

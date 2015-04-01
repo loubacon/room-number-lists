@@ -31,6 +31,9 @@
       }
       Session.set "#{commentBoxId}_state", JSON.stringify(newState)
       return API
+    toPostReply: (p) ->
+      Meteor.call 'csut_proximalComments_comments.insert', p, ->
+        API.toListComments()
     getCurrentState: -> 
       JSON.parse Session.get("#{commentBoxId}_state")
   }

@@ -26,13 +26,23 @@ Template.comment.events {
     e.preventDefault()
     ISM t.data.commentBoxId
       .toShowCommentMenu t.data._id
-  'submit form': (e, t) ->
+  'submit .replyForm': (e, t) ->
     e.preventDefault()
+    formObj = csut.objectifyForm(t.$('form'))
     ISM(t.data.commentBoxId)
-      .toConfirmReplyMessage t.data._id, csut.objectifyForm(t.$('form')).message
+      .toConfirmReplyMessage t.data._id, formObj.message
   'click .replyForm [href="cancel"]': (e, t) ->
     e.preventDefault()
     ISM(t.data.commentBoxId).toListComments()
+  'submit .confirmReplyMessageForm': (e, t) ->
+    e.preventDefault()
+    confirmedMsg = ISM(t.data.commentBoxId).getCurrentState().replyMsg
+    ISM(t.data.commentBoxId)
+      .toPostReply {
+        msg: confirmedMsg
+        parentId: t.data._id
+        commentBoxId: t.data.commentBoxId
+      }
   'click .confirmReplyMessage [href="cancel"]': (e, t) ->
     e.preventDefault()
     ISM(t.data.commentBoxId).toListComments()
