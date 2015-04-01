@@ -13,14 +13,20 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.0.4.2');
 
+  api.use('csut:ramdajs', ['client', 'server']);
+  api.use('reactive-var', ['client', 'server']);
+  api.use('csut:js-fsm', ['client', 'server']);
   api.use('coffeescript', ['client', 'server']);
   api.use('templating', ['client']);
   api.use('mongo', ['client', 'server']);
 
   api.addFiles('both/collections.coffee', ['client', 'server']);
+  api.addFiles('client/comment/comment.html', ['client']);
+  api.addFiles('client/comment/comment.coffee', ['client']);
   api.addFiles('client/displayChildren/displayChildren.html', ['client']);
   api.addFiles('client/displayChildren/displayChildren.coffee', ['client']);
   api.addFiles('client/proximal_comments/proximal_comments.html', ['client']);
+  api.addFiles('client/proximal_comments/proximal_comments.coffee', ['client']);
   api.addFiles('server/dummyData.coffee', ['server']);
   api.addFiles('server/publish.coffee', ['server']);
 

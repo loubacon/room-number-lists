@@ -1,3 +1,5 @@
+need to store currentState and targetComment under commentboxId namesapced session variables
+
 - List App Features
   - allow discussion in-place in a website (comments, replies, users)
   - track unread messages for users
@@ -16,6 +18,17 @@
 - Define URLs used in app
 - Define GUI components used in app
 - Define State Machines used in app
+  * minimized and maximized states are NOT managed by the comments, that is a parameter on the template when it is called (probably based on a reactive var in container)
+  - listComments
+  - showCommentMenu (@targetComment)
+  - createTopLevelComment
+  - confirmTopLevelComment
+  - createReplyComment
+  - confirmReplyComment
+  - editTopLevelComment
+  - confirmEditTopLevelComment
+  - editReplyComment
+  - confirmEditReplyComment
 - Create Mock Data
 mockData = [
   {
