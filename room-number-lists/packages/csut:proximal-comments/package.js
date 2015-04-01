@@ -21,6 +21,7 @@ Package.onUse(function(api) {
   api.use('mongo', ['client', 'server']);
 
   api.addFiles('both/collections.coffee', ['client', 'server']);
+  api.addFiles('client/ISM/ISM.coffee', ['client']);
   api.addFiles('client/comment/comment.html', ['client']);
   api.addFiles('client/comment/comment.coffee', ['client']);
   api.addFiles('client/displayChildren/displayChildren.html', ['client']);

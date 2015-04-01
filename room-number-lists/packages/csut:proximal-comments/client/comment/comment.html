@@ -1,8 +1,31 @@
 <template name="comment">
-  <div style="position:relative;left:1rem;">
-    {{this.msg}}
+  <div>
+    <a href="toggleMenu">{{this.msg}}</a>
     {{#if shouldShowMenu}}
-      <div style="background-color:orange;">This is a placeholder menu</div>
+      <div class="commentMenu" style="background-color:orange;">
+        <a href="edit">Edit (todo)</a> {{!-- edit should only appear if the current user created this comment --}}
+        <a href="reply">Reply</a>
+      </div>
+    {{/if}}
+    {{#if shouldShowReplyForm}}
+      <form class="replyForm">
+        <textarea name="message">{{getReplyFormMessage}}</textarea>
+        <button>Reply</button>
+        <a href="cancel">Cancel</a>
+      </form>
+    {{/if}}
+    {{#if shouldConfirmReplyMessage}}
+      <div class="confirmReplyMessage">
+        Please review the following text and confirm that you wish to post this reply:
+        <div>
+          {{getReplyFormMessage}}
+        </div>
+        <form>
+          <button>Post Reply</button>
+          <a href="edit">Edit Reply</a>
+          <a href="cancel">Cancel</a>
+        </form>
+      </div>
     {{/if}}
   </div>
 </template>

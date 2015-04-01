@@ -1,6 +1,8 @@
 <template name="displayChildren">
   {{#each children}}
-    {{> comment}}
-    {{> displayChildren parentId=this._id commentBoxId=commentBoxId}}
+    <div style="position:relative;left:1rem;">
+      {{> comment}}
+      {{> displayChildren parentId=this._id commentBoxId=commentBoxId}}
+    </div>
   {{/each}}
 </template>
