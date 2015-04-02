@@ -15,7 +15,7 @@
       }
       Session.set "#{commentBoxId}_state", JSON.stringify(newState)
       return API
-    toShowReplyForm: (commentId, replyMsg) -> 
+    toShowReplyForm: (commentId, replyMsg) -> # accepts a replyMsg because this function can be called for initial reply creation, or reply editing
       newState = {
         current: 'showReplyForm'
         target: commentId
@@ -27,6 +27,20 @@
       newState = {
         current: 'confirmReplyMessage'
         target: commentId
+        replyMsg: replyMsg
+      }
+      Session.set "#{commentBoxId}_state", JSON.stringify(newState)
+      return API
+    toShowRootReplyForm: (replyMsg) ->
+      newState = {
+        current: 'showRootReplyForm'
+        replyMsg: replyMsg or ''
+      }
+      Session.set "#{commentBoxId}_state", JSON.stringify(newState)
+      return API
+    toConfirmRootReplyMessage: (replyMsg) ->
+      newState = {
+        current: 'confirmRootReplyMessage'
         replyMsg: replyMsg
       }
       Session.set "#{commentBoxId}_state", JSON.stringify(newState)

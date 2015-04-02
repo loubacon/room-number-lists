@@ -1,3 +1,26 @@
 <template name="proximal_comments">
   {{> displayChildren parentId=commentBoxId commentBoxId=commentBoxId}}
+  <a href="replyRoot">Add a Comment</a>
+
+  {{#if shouldShowRootReplyForm}}
+    <form class="rootReplyForm">
+      <textarea name="message">{{getReplyFormMessage}}</textarea>
+      <button>Reply</button>
+      <a href="cancel">Cancel</a>
+    </form>
+  {{/if}}
+
+  {{#if shouldConfirmRootReplyMessage}}
+    <div class="confirmRootReplyMessage">
+      Please review the following text and confirm that you wish to post this comment:
+      <div>
+        {{getReplyFormMessage}}
+      </div>
+      <form class="confirmRootReplyMessageForm">
+        <button>Post Reply</button>
+        <a href="edit">Edit Reply</a>
+        <a href="cancel">Cancel</a>
+      </form>
+    </div>
+  {{/if}}
 </template>
