@@ -23,9 +23,25 @@
       }
       Session.set "#{commentBoxId}_state", JSON.stringify(newState)
       return API
+    toShowEditForm: (commentId, replyMsg) ->
+      newState = {
+        current: 'showEditForm'
+        target: commentId
+        replyMsg: replyMsg or ''
+      }
+      Session.set "#{commentBoxId}_state", JSON.stringify(newState)
+      return API
     toConfirmReplyMessage: (commentId, replyMsg) ->
       newState = {
         current: 'confirmReplyMessage'
+        target: commentId
+        replyMsg: replyMsg
+      }
+      Session.set "#{commentBoxId}_state", JSON.stringify(newState)
+      return API
+    toConfirmEditMessage: (commentId, replyMsg) ->
+      newState = {
+        current: 'confirmEditMessage'
         target: commentId
         replyMsg: replyMsg
       }
@@ -47,6 +63,9 @@
       return API
     toPostReply: (p) ->
       Meteor.call 'csut_proximalComments_comments.insert', p, ->
+        API.toListComments()
+    toPostEdit: (p) ->
+      Meteor.call 'csut_proximalComments_comments.upsert', p, ->
         API.toListComments()
     getCurrentState: -> 
       JSON.parse Session.get("#{commentBoxId}_state")

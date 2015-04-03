@@ -1,9 +1,11 @@
 <template name="comment">
   <div>
-    <a href="toggleMenu">{{this.msg}}</a>
+    <a href="toggleMenu">{{this.msg}}</a> - {{this.creator}}
     {{#if shouldShowMenu}}
       <div class="commentMenu" style="background-color:orange;">
-        <a href="edit">Edit (todo)</a> {{!-- edit should only appear if the current user created this comment --}}
+        {{#if shouldAllowEditing}}
+          <a href="edit">Edit (todo)</a> 
+        {{/if}}
         <a href="reply">Reply</a>
       </div>
     {{/if}}
@@ -13,6 +15,26 @@
         <button>Reply</button>
         <a href="cancel">Cancel</a>
       </form>
+    {{/if}}
+    {{#if shouldShowEditForm}}
+      <form class="editForm">
+        <textarea name="message">{{getEditFormMessage}}</textarea>
+        <button>Save Edit</button>
+        <a href="cancel">Cancel</a>
+      </form>
+    {{/if}}
+    {{#if shouldConfirmEditMessage}}
+      <div class="confirmEditMessage">
+        Please review the following text and confirm that you wish to post this reply:
+        <div>
+          {{getEditFormMessage}}
+        </div>
+        <form class="confirmEditMessageForm">
+          <button>Post Reply</button>
+          <a href="edit">Edit</a>
+          <a href="cancel">Cancel</a>
+        </form>
+      </div>
     {{/if}}
     {{#if shouldConfirmReplyMessage}}
       <div class="confirmReplyMessage">
