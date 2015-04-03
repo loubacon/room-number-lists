@@ -4,7 +4,7 @@ Template.comment.helpers {
 
   'shouldShowMenu': -> 
     state = ISM(@commentBoxId).getCurrentState()
-    state.target is @_id and state.current is 'showCommentMenu'
+    state.target is @_id and state.current is 'showCommentMenu' and Meteor.user()
 
   'shouldShowReplyForm': -> 
     state = ISM(@commentBoxId).getCurrentState()
