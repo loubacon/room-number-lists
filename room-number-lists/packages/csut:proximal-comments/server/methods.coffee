@@ -4,7 +4,7 @@ Meteor.methods {
       msg: p.msg
       creator: Meteor.user().emails[0].address
       creatorId: Meteor.userId()
-      creationDate: (new Date()).toString()
+      creationDate: Date.now()
       commentBoxId: p.commentBoxId
       parentId: p.parentId
     }
