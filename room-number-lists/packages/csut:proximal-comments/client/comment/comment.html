@@ -1,12 +1,17 @@
 <template name="comment">
   <div>
-    <a href="toggleMenu">{{this.msg}}</a> - {{this.creator}}
+    {{#if this.unlocked}}
+      <a href="toggleMenu">{{this.msg}}</a> - {{this.creator}}
+    {{else}}
+      {{this.msg}} - {{this.creator}}
+    {{/if}}
     {{#if shouldShowMenu}}
       <div class="commentMenu" style="background-color:orange;">
         {{#if shouldAllowEditing}}
           <a href="edit">Edit</a> 
         {{/if}}
         <a href="reply">Reply</a>
+        <a href="closeMenu">Close</a>
       </div>
     {{/if}}
     {{#if shouldShowReplyForm}}

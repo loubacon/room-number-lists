@@ -3,5 +3,12 @@ Template.displayChildren.helpers {
 
   'children': -> 
     Meteor.subscribe 'csut_proximalComments_comments', @parentId
-    return csut_proximalComments_comments.find({parentId: @parentId}, {sort: {creationDate: 1}}).fetch()
+    xs = csut_proximalComments_comments.find({parentId: @parentId}, {sort: {creationDate: 1}}).fetch()
+    f = (o) =>
+      o.unlocked = @unlocked
+      o.userId = @userId
+      return o
+    xs = R.map f, xs
+    console.log xs
+    return xs
 }

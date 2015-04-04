@@ -1,6 +1,8 @@
 <template name="proximal_comments">
-  {{> displayChildren parentId=commentBoxId commentBoxId=commentBoxId}}
-  <a href="replyRoot">Add a Comment</a>
+  {{ > displayChildren parentId=this.commentBoxId commentBoxId=this.commentBoxId unlocked=this.unlocked userId=this.userId}}
+  {{#if unlocked}}
+    <a href="replyRoot">Add a Comment</a>
+  {{/if}}
 
   {{#if shouldShowRootReplyForm}}
     <form class="rootReplyForm">

@@ -1,6 +1,12 @@
 <template name="blueprint">
   {{> loginButtons}}
-  {{> proximal_comments commentBoxId='testBox1'}}
+  <h1>This is a pretend site for going over stuff</h1>
+  <h2>What do you think about this logo?</h2>
+  {{> proximal_comments commentBoxId='testBox1' unlocked=unlocked userId=userId}}
   <hr>
-  {{> proximal_comments commentBoxId='textBox2'}}
+  <h2>What do you think about this menu thing</h2>
+  <p>...info about menu, pictures, etc...</p>
+  {{> proximal_comments commentBoxId='textBox2' unlocked=unlocked userId=userId}}
+
+  {{!-- multiple occurences of one id is strange... --}}
 </template>

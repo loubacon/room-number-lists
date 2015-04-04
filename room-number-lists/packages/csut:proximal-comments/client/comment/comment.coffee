@@ -1,10 +1,10 @@
 Template.comment.helpers {
-
-  'shouldAllowEditing': -> this.creatorId is Meteor.userId()
+  'log': (x) -> console.log x
+  'shouldAllowEditing': -> this.creatorId is this.userId
 
   'shouldShowMenu': -> 
     state = ISM(@commentBoxId).getCurrentState()
-    state.target is @_id and state.current is 'showCommentMenu' and Meteor.user()
+    state.target is @_id and state.current is 'showCommentMenu' and this.unlocked is true
 
   'shouldShowReplyForm': -> 
     state = ISM(@commentBoxId).getCurrentState()
@@ -33,6 +33,10 @@ Template.comment.events {
     console.log 'click [href="edit"]'
     ISM t.data.commentBoxId
       .toShowEditForm t.data._id, t.data.msg # pass along replyMsg
+  'click .commentMenu [href="closeMenu"]': (e, t) -> 
+    e.preventDefault()
+    ISM t.data.commentBoxId
+      .toListComments()
   'click [href="reply"]': (e, t) -> 
     e.preventDefault()
     ISM(t.data.commentBoxId).toShowReplyForm t.data._id

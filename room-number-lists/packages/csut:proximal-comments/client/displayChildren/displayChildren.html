@@ -2,7 +2,7 @@
   {{#each children}}
     <div style="position:relative;left:1rem;">
       {{> comment}}
-      {{> displayChildren parentId=this._id commentBoxId=commentBoxId}}
+      {{> displayChildren parentId=this._id commentBoxId=commentBoxId unlocked=this.unlocked userId=this.userId}}
     </div>
   {{/each}}
 </template>

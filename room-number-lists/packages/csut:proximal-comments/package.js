@@ -19,6 +19,7 @@ Package.onUse(function(api) {
   api.use('coffeescript', ['client', 'server']);
   api.use('templating', ['client']);
   api.use('mongo', ['client', 'server']);
+  api.use('accounts-password', ['client', 'server']);
 
   api.addFiles('both/collections.coffee', ['client', 'server']);
   api.addFiles('client/ISM/ISM.coffee', ['client']);
@@ -31,6 +32,7 @@ Package.onUse(function(api) {
   api.addFiles('server/dummyData.coffee', ['server']);
   api.addFiles('server/methods.coffee', ['server']);
   api.addFiles('server/publish.coffee', ['server']);
+  api.addFiles('client/helpers.coffee', ['client']);
 
   api.export('csut_proximalComments_comments');
 });
