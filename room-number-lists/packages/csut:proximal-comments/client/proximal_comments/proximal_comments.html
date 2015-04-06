@@ -1,15 +1,22 @@
 <template name="proximal_comments">
-  {{ > displayChildren parentId=this.commentBoxId commentBoxId=this.commentBoxId unlocked=this.unlocked userId=this.userId}}
+  {{!-- > displayChildren parentId=this.commentBoxId commentBoxId=this.commentBoxId unlocked=this.unlocked userId=this.userId --}}
+  {{#each childComments}}
+    {{> comment}}
+  {{/each}}
   {{#if unlocked}}
-    <a href="replyRoot">Add a Comment</a>
+    <div class="replyToRoot">
+      {{> Template.dynamic template=replyToRootLink}} 
+      {{!-- any element with attribute href="replyToRoot" in the template passed as replyToRootLink will show the adding comment template --}}
+    </div>
   {{/if}}
 
   {{#if shouldShowRootReplyForm}}
-    <form class="rootReplyForm">
-      <textarea name="message">{{getReplyFormMessage}}</textarea>
-      <button>Reply</button>
-      <a href="cancel">Cancel</a>
-    </form>
+    <div class="replyToRootForm">
+      {{> Template.dynamic 
+            template=replyForm 
+            data=replyToRootForm_dataContext
+      }}    
+    </div>
   {{/if}}
 
   {{#if shouldConfirmRootReplyMessage}}

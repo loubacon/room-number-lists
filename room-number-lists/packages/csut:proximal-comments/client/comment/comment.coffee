@@ -2,6 +2,8 @@ Template.comment.helpers {
   'log': (x) -> console.log x
   'shouldAllowEditing': -> this.creatorId is this.userId
 
+  'replyForm_dataContext' : -> return {msg: ISM(@commentBoxId).getCurrentState().replyMsg}
+
   'shouldShowMenu': -> 
     state = ISM(@commentBoxId).getCurrentState()
     state.target is @_id and state.current is 'showCommentMenu' and this.unlocked is true
@@ -18,7 +20,7 @@ Template.comment.helpers {
     state = ISM(@commentBoxId).getCurrentState()
     state.target is @_id and state.current is 'confirmEditMessage'
 
-  'getReplyFormMessage': -> ISM(@commentBoxId).getCurrentState().replyMsg
+  # 'getReplyFormMessage': -> ISM(@commentBoxId).getCurrentState().replyMsg
 
   'getEditFormMessage': -> ISM(@commentBoxId).getCurrentState().replyMsg
 
@@ -44,7 +46,7 @@ Template.comment.events {
     e.preventDefault()
     ISM t.data.commentBoxId
       .toShowCommentMenu t.data._id
-  'submit .replyForm': (e, t) ->
+  'submit .replyForm form': (e, t) ->
     e.preventDefault()
     formObj = csut.objectifyForm(t.$('form'))
     ISM(t.data.commentBoxId)

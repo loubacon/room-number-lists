@@ -2,18 +2,31 @@ Template.proximal_comments.onCreated ->
   ISM(@data.commentBoxId).toListComments()
 
 Template.proximal_comments.helpers {
+  'childComments': -> 
+    Meteor.subscribe 'csut_proximalComments_comments', @commentBoxId
+    xs = csut_proximalComments_comments.find({commentBoxId: @commentBoxId}).fetch()
+    f = (o) =>
+      o.unlocked = @unlocked
+      o.userId = @userId
+      return o
+    xs = R.map f, xs
+    xs = R.sortBy R.prop('_id'), xs
+    console.log xs
+    return xs
+
   'shouldShowRootReplyForm': -> ISM(@commentBoxId).getCurrentState().current is 'showRootReplyForm'
-  'getReplyFormMessage': -> ISM(@commentBoxId).getCurrentState().replyMsg
+  # 'getReplyFormMessage': -> ISM(@commentBoxId).getCurrentState().replyMsg
+  'replyToRootForm_dataContext' : -> return {msg: ISM(@commentBoxId).getCurrentState().replyMsg}
   'shouldConfirmRootReplyMessage': -> ISM(@commentBoxId).getCurrentState().current is 'confirmRootReplyMessage'
 }
 
 Template.proximal_comments.events {
-  'click [href="replyRoot"]': (e, t) -> 
+  'click .replyToRoot [href="replyToRoot"]': (e, t) -> 
     e.preventDefault()
     # console.log 'click [href="replyRoot"]'
     ISM(t.data.commentBoxId).toShowRootReplyForm()
 
-  'submit .rootReplyForm': (e, t) ->
+  'submit .replyToRootForm form': (e, t) ->
     e.preventDefault()
     formObj = csut.objectifyForm(t.$('form'))
     ISM(t.data.commentBoxId)

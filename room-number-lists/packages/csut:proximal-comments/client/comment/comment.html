@@ -1,7 +1,9 @@
 <template name="comment">
   <div>
     {{#if this.unlocked}}
-      <a href="toggleMenu">{{this.msg}}</a> - {{this.creator}}
+      <div style="position:relative; left: {{this.replyLevel}}rem">
+        <a href="toggleMenu">{{this.msg}}</a> - {{this.creator}}
+      </div>
     {{else}}
       {{this.msg}} - {{this.creator}}
     {{/if}}
@@ -15,11 +17,20 @@
       </div>
     {{/if}}
     {{#if shouldShowReplyForm}}
-      <form class="replyForm">
-        <textarea name="message">{{getReplyFormMessage}}</textarea>
-        <button>Reply</button>
-        <a href="cancel">Cancel</a>
-      </form>
+      <div class="replyForm">
+        {{> Template.dynamic 
+              template=../replyForm 
+              data=replyForm_dataContext
+        }} 
+      </div>
+      
+      {{!-- 
+        <form class="replyForm">
+          <textarea name="message">{{getReplyFormMessage}}</textarea>
+          <button>Reply</button>
+          <a href="cancel">Cancel</a>
+        </form>
+      --}}
     {{/if}}
     {{#if shouldShowEditForm}}
       <form class="editForm">

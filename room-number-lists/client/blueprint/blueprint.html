@@ -2,11 +2,26 @@
   {{> loginButtons}}
   <h1>This is a pretend site for going over stuff</h1>
   <h2>What do you think about this logo?</h2>
-  {{> proximal_comments commentBoxId='testBox1' unlocked=unlocked userId=userId}}
-  <hr>
-  <h2>What do you think about this menu thing</h2>
-  <p>...info about menu, pictures, etc...</p>
-  {{> proximal_comments commentBoxId='textBox2' unlocked=unlocked userId=userId}}
+  {{> proximal_comments 
+        commentBoxId='testBox1'
+        unlocked=unlocked 
+        userId=userId
+        replyToRootLink="replyToRootLinkTemplate"
+        replyForm="replyFormTemplate"
+  }}
+
 
   {{!-- multiple occurences of one id is strange... --}}
+</template>
+
+<template name="replyToRootLinkTemplate">
+  <a href="replyToRoot">Add an abstract Comment replyToRoot</a>
+</template>
+
+<template name="replyFormTemplate">
+  <form class="rootReplyForm">
+    <textarea name="message">{{this.msg}}</textarea>
+    <button>Reply abstractly</button>
+    <a href="cancel">Cancel</a>
+  </form>
 </template>
