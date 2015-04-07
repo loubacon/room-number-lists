@@ -1,5 +1,4 @@
 <template name="proximal_comments">
-  {{!-- > displayChildren parentId=this.commentBoxId commentBoxId=this.commentBoxId unlocked=this.unlocked userId=this.userId --}}
   {{#each childComments}}
     {{> comment}}
   {{/each}}
@@ -23,7 +22,7 @@
     <div class="confirmRootReplyMessage">
       Please review the following text and confirm that you wish to post this comment:
       <div>
-        {{getReplyFormMessage}}
+        {{replyToRootForm_dataContext.msg}}
       </div>
       <form class="confirmRootReplyMessageForm">
         <button>Post Reply</button>
