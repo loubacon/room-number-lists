@@ -1,27 +1,19 @@
 <template name="blueprint">
-  {{> loginButtons}}
-  <h1>This is a pretend site for going over stuff</h1>
-  <h2>What do you think about this logo?</h2>
-  {{> proximal_comments 
-        commentBoxId='testBox1'
-        unlocked=unlocked 
-        userId=userId
-        replyToRootLink="replyToRootLinkTemplate"
-        replyForm="replyFormTemplate"
-  }}
+  {{log 'what up logster?'}}
+  <div style="transition: all 1s ease; overflow:hidden; max-height:{{stateIfElse 'displayMessage' '10rem' '0rem'}}">
+    {{msg}}
+    <button class="finishMessage">Finished with Message</button>
+    <button class="wantEaster">Show me easter</button>
+  </div>
 
+  {{#if stateIs 'error'}}
+    {{error}}
+    <button class="clearError">Dismiss Error</button>
+  {{/if}}
 
-  {{!-- multiple occurences of one id is strange... --}}
-</template>
+  {{#if stateIs 'egg'}}
+    <h1 class="easterEgg">holy easter bunny, next easter is only {{x}} days away!</h1>
+  {{/if}}
 
-<template name="replyToRootLinkTemplate">
-  <a href="replyToRoot">Add an abstract Comment replyToRoot</a>
-</template>
-
-<template name="replyFormTemplate">
-  <form class="rootReplyForm">
-    <textarea name="message">{{this.msg}}</textarea>
-    <button>Reply abstractly</button>
-    <a href="cancel">Cancel</a>
-  </form>
+  
 </template>

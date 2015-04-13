@@ -1,13 +1,5 @@
-###
-this totally works, build a package for Arboreal
-THEN use csut:treeify and Arboreal to build comment trees from flat data
-###
-
-window.test = (testName, x, y) =>
-  if x isnt y then console.error "#{testName}: expected #{y}, but got #{x}" else console.log "SUCCESS: #{testName}"
-
-# https://github.com/afiore/arboreal
-Arboreal = `function () {
+// https://github.com/afiore/arboreal
+Arboreal = function () {
   'use strict';
 
   function include (array, item) {
@@ -257,47 +249,4 @@ Arboreal = `function () {
   // }
   return Arboreal;
 
-}(this);`
-
-window.nodes = [
-  {id: "B", pid: "A"}
-  {id: "C", pid: "A"}
-  {id: "D", pid: "B"}
-  {id: "E", pid: "B"}
-  {id: "F", pid: "B"}
-  {id: "H", pid: "C"}
-  {id: "I", pid: "C"}
-  {id: "J", pid: "C"}
-  {id: "G", pid: "E"}
-  {id: "K", pid: "J"}
-  {id: "L", pid: "J"}
-]
-
-window.cmp = (a, b) ->
-  switch
-    when a.id < b.id then -1
-    when a.id > b.id then 1
-    else 0
-    
-window.tree = treeify {
-  rootNode: {id: "A", children:[]}
-  nodes: nodes
-  comparator: cmp
-  pidProp: 'pid'
-}
-window.iterator = (node) ->
-  # var depth = "", i;
-  # for (i = 1; i <= node.depth; i++) depth += ">>";
-  console.info '.'
-
-
-window.arb = Arboreal.parse tree.root, 'children'
-
-arb.traverseDown (x) -> console.log x.data.id
-# test "tree.root?.id", tree.root?.id, "A"
-
-
-###
-make a treeWalk function  that takes a tree
-and returns a dept
-###
+}(this);

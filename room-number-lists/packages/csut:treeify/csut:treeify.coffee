@@ -3,11 +3,11 @@ treeify = (p) ->
   p.nodes = R.sort p.comparator, p.nodes
   children = R.groupBy R.prop(p.pidProp), p.nodes
   getChildren = (node) ->
-    if not children[node.id]?
+    if not children[node._id]?
       node.children = []
       return node
     else
-      node.children = R.forEach getChildren, children[node.id]
+      node.children = R.forEach getChildren, children[node._id]
       return node
   return {
     root: getChildren p.rootNode

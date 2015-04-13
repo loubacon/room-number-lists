@@ -20,6 +20,9 @@ Package.onUse(function(api) {
   api.use('templating', ['client']);
   api.use('mongo', ['client', 'server']);
   api.use('accounts-password', ['client', 'server']);
+  api.use('csut:einfach', ['client', 'server']);
+  api.use('csut:treeify', ['client', 'server']);
+  api.use('csut:arboreal', ['client', 'server']);
 
   api.addFiles('both/collections.coffee', ['client', 'server']);
   api.addFiles('client/ISM/ISM.coffee', ['client']);

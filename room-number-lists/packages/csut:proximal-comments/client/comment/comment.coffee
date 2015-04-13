@@ -6,7 +6,7 @@ Template.comment.helpers {
 
   'shouldShowMenu': -> 
     state = ISM(@commentBoxId).getCurrentState()
-    state.target is @_id and state.current is 'showCommentMenu' and this.unlocked is true
+    state.target is @_id and state.current is 'showCommentMenu'
 
   'shouldShowReplyForm': -> 
     state = ISM(@commentBoxId).getCurrentState()

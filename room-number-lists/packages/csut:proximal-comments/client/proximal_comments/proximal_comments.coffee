@@ -5,14 +5,26 @@ Template.proximal_comments.helpers {
   'childComments': -> 
     Meteor.subscribe 'csut_proximalComments_comments', @commentBoxId
     xs = csut_proximalComments_comments.find({commentBoxId: @commentBoxId}).fetch()
-    f = (o) =>
-      o.unlocked = @unlocked
-      o.userId = @userId
-      return o
-    xs = R.map f, xs
-    xs = R.sortBy R.prop('_id'), xs
-    console.log xs
-    return xs
+    # build out a tree structure from flat data returned by collection
+    tree = treeify {
+      rootNode: {_id: @commentBoxId, children:[]}
+      nodes: xs
+      comparator: R.comparator (a, b) -> a.creationDate < b.creationDate
+      pidProp: 'parentId'
+    }
+    # empty array to catch our traversal results
+    xs1 = []
+    # function called on each node during traversal
+    f = (x) ->
+      obj = x.data
+      obj.replyLevel = x.depth
+      xs1.push obj
+    # generate a shiny Arboreal tree from our lowly tree structure
+    arb = Arboreal.parse(tree.root, 'children')
+    # traverse our arboreal tree (depth first) adding each node to our xs1 array
+    # xs will be a flat array again, but now arranged in proper psuedo-tree order
+    arb.traverseDown f
+    return R.tail xs1 # snip off the root node
 
   'shouldShowRootReplyForm': -> ISM(@commentBoxId).getCurrentState().current is 'showRootReplyForm'
   # 'getReplyFormMessage': -> ISM(@commentBoxId).getCurrentState().replyMsg

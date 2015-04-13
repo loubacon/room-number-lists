@@ -1,12 +1,8 @@
 <template name="comment">
   <div>
-    {{#if this.unlocked}}
-      <div style="position:relative; left: {{this.replyLevel}}rem">
-        <a href="toggleMenu">{{this.msg}}</a> - {{this.creator}}
-      </div>
-    {{else}}
-      {{this.msg}} - {{this.creator}}
-    {{/if}}
+    <div style="position:relative; left: {{this.replyLevel}}rem">
+      <a href="toggleMenu">{{this.msg}}</a> - {{this.creator}}
+    </div>
     {{#if shouldShowMenu}}
       <div class="commentMenu" style="background-color:orange;">
         {{#if shouldAllowEditing}}
@@ -23,21 +19,21 @@
               data=replyForm_dataContext
         }} 
       </div>
-      
-      {{!-- 
-        <form class="replyForm">
-          <textarea name="message">{{getReplyFormMessage}}</textarea>
-          <button>Reply</button>
-          <a href="cancel">Cancel</a>
-        </form>
-      --}}
     {{/if}}
     {{#if shouldShowEditForm}}
+      <div class="editForm">
+        {{> Template.dynamic
+              template=../editForm
+              data=editForm_dataContext
+        }}
+      </div>
+    {{!-- 
       <form class="editForm">
         <textarea name="message">{{getEditFormMessage}}</textarea>
         <button>Save Edit</button>
         <a href="cancel">Cancel</a>
       </form>
+    --}}
     {{/if}}
     {{#if shouldConfirmEditMessage}}
       <div class="confirmEditMessage">
